@@ -27,7 +27,7 @@ export function BottomNav() {
   const menuRef = useRef<HTMLDivElement>(null);
 
   // Enriched Profile states
-  const [userName, setUserName] = useState("Serdar Demir");
+  const [userName, setUserName] = useState("Kullanıcı");
   const [userPic, setUserPic] = useState("");
 
   useEffect(() => {
