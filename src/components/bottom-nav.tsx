@@ -215,8 +215,11 @@ export function BottomNav() {
               </div>
 
               {/* Footer / Build Version */}
-              <div className="text-center text-[9px] text-muted-foreground/60 border-t border-border/40 pt-2">
-                Cüzdan v1.2.0
+              <div className="text-center text-[9px] text-muted-foreground/60 border-t border-border/40 pt-2 space-y-0.5">
+                <div>Cüzdan v1.2.0</div>
+                <div className="text-[8px] text-muted-foreground/40 font-light">
+                  Created by Serdar Çil (@srdrcll)
+                </div>
               </div>
             </div>
           )}

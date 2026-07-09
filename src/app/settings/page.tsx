@@ -921,6 +921,21 @@ export default function SettingsPage() {
           </div>
         )}
 
+        {/* Author Credit Footer */}
+        <div className="text-center py-6 space-y-1">
+          <p className="text-[10px] text-muted-foreground/60 font-medium">
+            Created by <span className="font-bold text-foreground/80">Serdar Çil</span>
+          </p>
+          <a
+            href="https://instagram.com/srdrcll"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[9px] text-primary/75 hover:text-primary transition-colors font-semibold"
+          >
+            @srdrcll
+          </a>
+        </div>
+
         {/* Premium Toast Container */}
         {toast && (
           <div
