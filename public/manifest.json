@@ -1,6 +1,6 @@
 {
-  "name": "Budget Tracker",
-  "short_name": "Budget",
+  "name": "Cüzdan",
+  "short_name": "Cüzdan",
   "description": "Kişisel bütçe takip uygulaması",
   "start_url": "/",
   "display": "standalone",

@@ -36,7 +36,7 @@ self.addEventListener("fetch", (event) => {
 
 self.addEventListener("push", (event) => {
   const data = event.data?.json() ?? {
-    title: "Budget Tracker",
+    title: "Cüzdan",
     body: "Yeni bildirim",
   };
 

@@ -12,11 +12,13 @@ export default function ExpensePage() {
   const router = useRouter();
   const [accounts, setAccounts] = useState<Array<{ id: string; name: string }>>([]);
   const [loading, setLoading] = useState(false);
+  const [isInstallment, setIsInstallment] = useState(false);
+  const [installmentCount, setInstallmentCount] = useState(6);
   const [form, setForm] = useState({
     accountId: "",
     amount: "",
     description: "",
-    category: EXPENSE_CATEGORIES[0],
+    category: EXPENSE_CATEGORIES[0] as string,
     date: new Date().toISOString().split("T")[0],
   });
 
@@ -44,6 +46,8 @@ export default function ExpensePage() {
         description: form.description,
         category: form.category,
         date: form.date,
+        isInstallment,
+        totalInstallments: installmentCount,
       }),
     });
 
@@ -96,6 +100,46 @@ export default function ExpensePage() {
           value={form.date}
           onChange={(e) => setForm({ ...form, date: e.target.value })}
         />
+
+        {/* Taksit Seçeneği */}
+        <div className="space-y-3 rounded-2xl border border-border bg-card p-4">
+          <label className="flex items-center gap-2 text-sm font-medium text-foreground cursor-pointer">
+            <input
+              type="checkbox"
+              checked={isInstallment}
+              onChange={(e) => setIsInstallment(e.target.checked)}
+              className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+            />
+            <span>Taksitli Harcama</span>
+          </label>
+
+          {isInstallment && (
+            <div className="space-y-3 animate-slide-up">
+              <div>
+                <label className="mb-1 block text-xs font-medium text-muted-foreground">Taksit Sayısı</label>
+                <select
+                  value={installmentCount}
+                  onChange={(e) => setInstallmentCount(parseInt(e.target.value))}
+                  className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm outline-none focus:border-primary focus:ring-1 focus:ring-primary"
+                >
+                  <option value={2}>2 Taksit</option>
+                  <option value={3}>3 Taksit</option>
+                  <option value={4}>4 Taksit</option>
+                  <option value={5}>5 Taksit</option>
+                  <option value={6}>6 Taksit</option>
+                  <option value={9}>9 Taksit</option>
+                  <option value={12}>12 Taksit</option>
+                </select>
+              </div>
+
+              {form.amount && parseFloat(form.amount) > 0 && (
+                <div className="text-xs text-muted-foreground font-medium bg-muted/50 p-2.5 rounded-xl">
+                  Aylık Ödeme: <span className="font-bold text-foreground">{installmentCount} ay boyunca {((parseFloat(form.amount) || 0) / installmentCount).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺</span>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
 
         <Button type="submit" size="lg" className="w-full" disabled={loading || accounts.length === 0}>
           {loading ? "Kaydediliyor..." : "Gider Ekle"}

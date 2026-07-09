@@ -9,6 +9,9 @@ export interface DashboardData {
     balance: number;
     color: string;
     creditLimit?: number | null;
+    statementDay?: number | null;
+    dueDay?: number | null;
+    minPaymentPct?: number | null;
   }>;
   recentTransactions: Array<{
     id: string;
@@ -36,6 +39,11 @@ export interface DashboardData {
     totalAmount: number;
     monthlyPayment: number;
     dueDate: string | null;
+  }>;
+  savingsRate?: number;
+  netWorthData?: Array<{
+    month: string;
+    netWorth: number;
   }>;
   unreadNotifications: number;
 }

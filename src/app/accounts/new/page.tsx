@@ -12,17 +12,22 @@ import { cn } from "@/lib/utils";
 export default function NewAccountPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [form, setForm] = useState({
     name: "",
     type: "cash" as "cash" | "bank" | "credit_card",
     balance: "",
     creditLimit: "",
-    color: ACCOUNT_COLORS[0],
+    statementDay: "15",
+    dueDay: "25",
+    minPaymentPct: "40",
+    color: ACCOUNT_COLORS[0] as string,
   });
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
+    setError("");
 
     const res = await fetch("/api/accounts", {
       method: "POST",
@@ -35,6 +40,18 @@ export default function NewAccountPage() {
           form.type === "credit_card"
             ? parseFloat(form.creditLimit) || undefined
             : undefined,
+        statementDay:
+          form.type === "credit_card"
+            ? parseInt(form.statementDay) || undefined
+            : undefined,
+        dueDay:
+          form.type === "credit_card"
+            ? parseInt(form.dueDay) || undefined
+            : undefined,
+        minPaymentPct:
+          form.type === "credit_card"
+            ? parseFloat(form.minPaymentPct) || undefined
+            : undefined,
         color: form.color,
       }),
     });
@@ -42,6 +59,9 @@ export default function NewAccountPage() {
     if (res.ok) {
       router.push("/accounts");
       router.refresh();
+    } else {
+      const body = await res.json();
+      setError(body.error || "Hesap oluşturulamadı");
     }
     setLoading(false);
   }
@@ -82,15 +102,50 @@ export default function NewAccountPage() {
         />
 
         {form.type === "credit_card" && (
-          <Input
-            label="Kredi Limiti"
-            type="number"
-            step="0.01"
-            min="0"
-            placeholder="0.00"
-            value={form.creditLimit}
-            onChange={(e) => setForm({ ...form, creditLimit: e.target.value })}
-          />
+          <>
+            <Input
+              label="Kredi Limiti"
+              type="number"
+              step="0.01"
+              min="0"
+              placeholder="0.00"
+              value={form.creditLimit}
+              onChange={(e) => setForm({ ...form, creditLimit: e.target.value })}
+              required
+            />
+            <div className="grid grid-cols-3 gap-2">
+              <Input
+                label="Hesap Kesim Günü"
+                type="number"
+                min="1"
+                max="31"
+                placeholder="15"
+                value={form.statementDay}
+                onChange={(e) => setForm({ ...form, statementDay: e.target.value })}
+                required
+              />
+              <Input
+                label="Son Ödeme Günü"
+                type="number"
+                min="1"
+                max="31"
+                placeholder="25"
+                value={form.dueDay}
+                onChange={(e) => setForm({ ...form, dueDay: e.target.value })}
+                required
+              />
+              <Input
+                label="Asgari Ödeme Oranı (%)"
+                type="number"
+                min="0"
+                max="100"
+                placeholder="40"
+                value={form.minPaymentPct}
+                onChange={(e) => setForm({ ...form, minPaymentPct: e.target.value })}
+                required
+              />
+            </div>
+          </>
         )}
 
         <div className="space-y-1.5">
@@ -114,6 +169,11 @@ export default function NewAccountPage() {
         <Button type="submit" size="lg" className="w-full" disabled={loading}>
           {loading ? "Oluşturuluyor..." : "Hesap Oluştur"}
         </Button>
+        {error && (
+          <p className="rounded-xl bg-red-500/10 px-3 py-2 text-sm text-red-500">
+            {error}
+          </p>
+        )}
       </form>
     </>
   );

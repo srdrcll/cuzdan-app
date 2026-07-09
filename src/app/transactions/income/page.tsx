@@ -12,11 +12,12 @@ export default function IncomePage() {
   const router = useRouter();
   const [accounts, setAccounts] = useState<Array<{ id: string; name: string }>>([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [form, setForm] = useState({
     accountId: "",
     amount: "",
     description: "",
-    category: INCOME_CATEGORIES[0],
+    category: INCOME_CATEGORIES[0] as string,
     date: new Date().toISOString().split("T")[0],
   });
 
@@ -33,6 +34,7 @@ export default function IncomePage() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
+    setError("");
 
     const res = await fetch("/api/transactions", {
       method: "POST",
@@ -50,6 +52,9 @@ export default function IncomePage() {
     if (res.ok) {
       router.push("/");
       router.refresh();
+    } else {
+      const body = await res.json();
+      setError(body.error || "Gelir eklenemedi");
     }
     setLoading(false);
   }
@@ -100,6 +105,9 @@ export default function IncomePage() {
         <Button type="submit" size="lg" className="w-full" disabled={loading || accounts.length === 0}>
           {loading ? "Kaydediliyor..." : "Gelir Ekle"}
         </Button>
+        {error && (
+          <p className="rounded-xl bg-red-500/10 px-3 py-2 text-sm text-red-500">{error}</p>
+        )}
       </form>
     </>
   );

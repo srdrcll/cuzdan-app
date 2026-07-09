@@ -11,6 +11,8 @@ import {
   PieChart,
   Pie,
   Cell,
+  LineChart,
+  Line,
 } from "recharts";
 import { Card, CardTitle } from "@/components/ui/card";
 import { formatCurrency } from "@/lib/utils";
@@ -58,6 +60,8 @@ export function MonthlyChart({ data }: MonthlyChartProps) {
                 borderRadius: "12px",
                 fontSize: "13px",
               }}
+              itemStyle={{ color: "var(--color-foreground)" }}
+              labelStyle={{ color: "var(--color-foreground)" }}
             />
             <Bar dataKey="income" fill="#22c55e" radius={[4, 4, 0, 0]} name="Gelir" />
             <Bar dataKey="expense" fill="#ef4444" radius={[4, 4, 0, 0]} name="Gider" />
@@ -112,6 +116,8 @@ export function CategoryChart({ data }: CategoryChartProps) {
                 borderRadius: "12px",
                 fontSize: "13px",
               }}
+              itemStyle={{ color: "var(--color-foreground)" }}
+              labelStyle={{ color: "var(--color-foreground)" }}
             />
           </PieChart>
         </ResponsiveContainer>
@@ -130,3 +136,55 @@ export function CategoryChart({ data }: CategoryChartProps) {
     </Card>
   );
 }
+
+interface NetWorthChartProps {
+  data: Array<{ month: string; netWorth: number }>;
+}
+
+export function NetWorthChart({ data }: NetWorthChartProps) {
+  return (
+    <Card>
+      <CardTitle className="mb-4">Net Varlık Gelişimi</CardTitle>
+      <div className="h-52">
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart data={data}>
+            <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" />
+            <XAxis
+              dataKey="month"
+              tick={{ fontSize: 12, fill: "var(--color-muted-foreground)" }}
+              axisLine={false}
+              tickLine={false}
+            />
+            <YAxis
+              tick={{ fontSize: 11, fill: "var(--color-muted-foreground)" }}
+              axisLine={false}
+              tickLine={false}
+              tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`}
+            />
+            <Tooltip
+              formatter={(value: number) => formatCurrency(value)}
+              contentStyle={{
+                background: "var(--color-card)",
+                border: "1px solid var(--color-border)",
+                borderRadius: "12px",
+                fontSize: "13px",
+              }}
+              itemStyle={{ color: "var(--color-foreground)" }}
+              labelStyle={{ color: "var(--color-foreground)" }}
+            />
+            <Line
+              type="monotone"
+              dataKey="netWorth"
+              stroke="#6366f1"
+              strokeWidth={2}
+              dot={{ r: 4 }}
+              activeDot={{ r: 6 }}
+              name="Net Varlık"
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+    </Card>
+  );
+}
+
