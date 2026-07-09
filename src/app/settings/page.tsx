@@ -932,7 +932,7 @@ export default function SettingsPage() {
             rel="noopener noreferrer"
             className="text-[9px] text-primary/75 hover:text-primary transition-colors font-semibold"
           >
-            linkedin.com/in/srdrcll
+            @srdrcll
           </a>
         </div>
 
