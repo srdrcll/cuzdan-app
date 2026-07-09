@@ -72,3 +72,16 @@ select,
 textarea {
   font-size: 16px;
 }
+
+@keyframes splash-progress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.animate-splash-progress {
+  animation: splash-progress 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}

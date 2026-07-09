@@ -226,15 +226,15 @@ export default function SettingsPage() {
       // 2. Try native Capacitor sharing first
       try {
         const writeResult = await Filesystem.writeFile({
-          path: "budget_backup.json",
+          path: "cuzdan_backup.json",
           data: jsonString,
           directory: Directory.Cache,
           encoding: Encoding.UTF8,
         });
 
         await Share.share({
-          title: "Bütçe Takip Yedek Dosyası",
-          text: "Bütçe Takip uygulamasından yedek verileriniz.",
+          title: "Cüzdan Yedek Dosyası",
+          text: "Cüzdan uygulamasından yedek verileriniz.",
           url: writeResult.uri,
           dialogTitle: "Yedeği Paylaş",
         });
@@ -246,7 +246,7 @@ export default function SettingsPage() {
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;
-        a.download = "budget_backup.json";
+        a.download = "cuzdan_backup.json";
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);

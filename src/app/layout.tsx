@@ -5,6 +5,7 @@ import { ServiceWorkerRegister } from "@/components/sw-register";
 import { OfflineProvider } from "@/components/offline-provider";
 import { BiometricGuard } from "@/components/biometric-guard";
 import { RecurringProcessor } from "@/components/recurring-processor";
+import { SplashScreen } from "@/components/splash-screen";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -42,6 +43,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-dvh antialiased">
         <ThemeProvider>
+          <SplashScreen />
           <OfflineProvider>
             <BiometricGuard>
               <main className="mx-auto min-h-dvh max-w-lg pb-20">{children}</main>
