@@ -216,8 +216,8 @@ export function AccountList({ accounts, onRefresh }: AccountListProps) {
 
       {/* Account Detail Modal */}
       {selectedAccount && (
-        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 p-4 sm:items-center backdrop-blur-sm animate-in fade-in">
-          <Card className="w-full max-w-sm rounded-3xl bg-card p-6 shadow-2xl animate-slide-up max-h-[85vh] flex flex-col overflow-hidden">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm animate-in fade-in">
+          <Card className="w-full max-w-sm rounded-2xl bg-card p-5 shadow-2xl animate-scale-in max-h-[85vh] flex flex-col overflow-hidden">
             
             {/* Header */}
             <div className="flex items-center justify-between border-b border-border pb-3 mb-4 shrink-0">

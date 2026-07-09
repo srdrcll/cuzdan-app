@@ -111,14 +111,14 @@ export function DashboardView() {
   return (
     <div className="animate-slide-up space-y-5 px-4 pb-4">
       {/* Month/Year selector */}
-      <div className="flex items-center justify-between gap-2 bg-muted/40 border border-border/40 p-2 py-1.5 px-3 rounded-2xl">
-        <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">Rapor Dönemi</span>
+      <div className="flex items-center justify-between gap-2 p-1.5 px-1">
+        <span className="text-[10px] font-bold text-muted-foreground/60 uppercase tracking-wider">Rapor Dönemi</span>
         <div className="flex gap-2">
           {/* Month Selector */}
           <select
             value={selectedMonth}
             onChange={(e) => setSelectedMonth(parseInt(e.target.value))}
-            className="rounded-xl border border-border bg-background px-2.5 py-1.5 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary/45 cursor-pointer font-medium"
+            className="rounded-xl border-none bg-muted/40 hover:bg-muted/65 px-3 py-1.5 text-xs text-foreground font-semibold focus:outline-none cursor-pointer transition-colors"
           >
             {Array.from({ length: 12 }, (_, i) => {
               const mIndex = i + 1;
@@ -134,7 +134,7 @@ export function DashboardView() {
           <select
             value={selectedYear}
             onChange={(e) => setSelectedYear(parseInt(e.target.value))}
-            className="rounded-xl border border-border bg-background px-2.5 py-1.5 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary/45 cursor-pointer font-medium"
+            className="rounded-xl border-none bg-muted/40 hover:bg-muted/65 px-3 py-1.5 text-xs text-foreground font-semibold focus:outline-none cursor-pointer transition-colors"
           >
             {[2024, 2025, 2026, 2027].map((y) => (
               <option key={y} value={y}>

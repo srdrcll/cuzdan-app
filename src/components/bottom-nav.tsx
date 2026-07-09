@@ -14,7 +14,8 @@ import {
   RotateCcw,
   Sparkles,
   Target,
-  Repeat
+  Repeat,
+  User
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SettingsModal } from "@/components/settings-modal";
@@ -87,14 +88,14 @@ export function BottomNav() {
                 key={href}
                 href={href}
                 className={cn(
-                  "flex flex-col items-center gap-0.5 rounded-xl px-3 py-1.5 text-xs transition-colors",
+                  "flex flex-col items-center gap-0.5 rounded-xl px-1 xs:px-2 sm:px-3 py-1 text-[9px] xs:text-[10px] sm:text-xs transition-colors",
                   isActive
                     ? "text-primary"
                     : "text-muted-foreground hover:text-foreground"
                 )}
               >
-                <Icon size={20} strokeWidth={isActive ? 2.5 : 2} />
-                <span className="font-medium">{label}</span>
+                <Icon size={18} strokeWidth={isActive ? 2.5 : 2} className="sm:w-5 sm:h-5" />
+                <span className="font-semibold">{label}</span>
               </Link>
             );
           })}
@@ -105,32 +106,22 @@ export function BottomNav() {
               setIsProfileMenuOpen(!isProfileMenuOpen);
             }}
             className={cn(
-              "flex flex-col items-center gap-0.5 rounded-xl px-3 py-1.5 text-xs transition-colors cursor-pointer text-muted-foreground hover:text-foreground",
+              "flex flex-col items-center gap-0.5 rounded-xl px-1 xs:px-2 sm:px-3 py-1 text-[9px] xs:text-[10px] sm:text-xs transition-colors cursor-pointer text-muted-foreground hover:text-foreground",
               isProfileMenuOpen && "text-primary"
             )}
             aria-label="Profil menüsü"
           >
-            <div className={cn(
-              "h-5 w-5 rounded-full overflow-hidden border transition-colors",
-              isProfileMenuOpen ? "border-primary" : "border-border"
-            )}>
-              {userPic ? (
+            {userPic ? (
+              <div className={cn(
+                "h-[18px] w-[18px] sm:h-5 sm:w-5 rounded-full overflow-hidden border transition-colors",
+                isProfileMenuOpen ? "border-primary" : "border-border"
+              )}>
                 <img src={userPic} alt="P" className="h-full w-full object-cover" />
-              ) : (
-                <svg viewBox="0 0 100 100" className="h-full w-full object-cover">
-                  <defs>
-                    <linearGradient id="avatarGradNav" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#8b5cf6" />
-                      <stop offset="100%" stopColor="#6366f1" />
-                    </linearGradient>
-                  </defs>
-                  <rect width="100" height="100" fill="url(#avatarGradNav)" />
-                  <circle cx="50" cy="40" r="18" fill="white" opacity="0.9" />
-                  <path d="M22,80 C22,65 32,58 50,58 C68,58 78,65 78,80" fill="white" opacity="0.9" />
-                </svg>
-              )}
-            </div>
-            <span className="font-medium">Profil</span>
+              </div>
+            ) : (
+              <User size={18} strokeWidth={isProfileMenuOpen ? 2.5 : 2} className="sm:w-5 sm:h-5" />
+            )}
+            <span className="font-semibold">Profil</span>
           </button>
  
           {/* Enriched Profile Popover */}
@@ -218,7 +209,7 @@ export function BottomNav() {
               <div className="text-center text-[9px] text-muted-foreground/60 border-t border-border/40 pt-2 space-y-0.5">
                 <div>Cüzdan v1.2.0</div>
                 <div className="text-[8px] text-muted-foreground/40 font-light">
-                  Created by Serdar Çil (@srdrcll)
+                  Created by Serdar Çil
                 </div>
               </div>
             </div>

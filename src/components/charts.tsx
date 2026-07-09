@@ -17,6 +17,13 @@ import {
 import { Card, CardTitle } from "@/components/ui/card";
 import { formatCurrency } from "@/lib/utils";
 
+const formatYAxisTick = (v: number) => {
+  if (Math.abs(v) >= 1000) {
+    return `${(v / 1000).toFixed(0)}k`;
+  }
+  return String(v);
+};
+
 const PIE_COLORS = [
   "#6366f1",
   "#8b5cf6",
@@ -50,7 +57,7 @@ export function MonthlyChart({ data }: MonthlyChartProps) {
               tick={{ fontSize: 11, fill: "var(--color-muted-foreground)" }}
               axisLine={false}
               tickLine={false}
-              tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`}
+              tickFormatter={formatYAxisTick}
             />
             <Tooltip
               formatter={(value: number) => formatCurrency(value)}
@@ -159,7 +166,7 @@ export function NetWorthChart({ data }: NetWorthChartProps) {
               tick={{ fontSize: 11, fill: "var(--color-muted-foreground)" }}
               axisLine={false}
               tickLine={false}
-              tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`}
+              tickFormatter={formatYAxisTick}
             />
             <Tooltip
               formatter={(value: number) => formatCurrency(value)}

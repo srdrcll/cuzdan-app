@@ -298,9 +298,9 @@ export default function SubscriptionsPage() {
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm animate-in fade-in">
-          <div className="w-full max-w-sm rounded-3xl bg-card p-6 shadow-2xl">
-            <h2 className="mb-4 text-xl font-bold text-foreground">Yeni Abonelik / Sabit İşlem</h2>
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm animate-in fade-in">
+          <div className="w-full max-w-sm rounded-2xl bg-card p-5 shadow-2xl border border-border animate-scale-in">
+            <h2 className="mb-4 text-lg font-bold text-foreground">Yeni Abonelik / Sabit İşlem</h2>
             
             <form onSubmit={handleAdd} className="space-y-4">
               

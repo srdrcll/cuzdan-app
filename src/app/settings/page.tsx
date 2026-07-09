@@ -927,12 +927,12 @@ export default function SettingsPage() {
             Created by <span className="font-bold text-foreground/80">Serdar Çil</span>
           </p>
           <a
-            href="https://instagram.com/srdrcll"
+            href="https://www.linkedin.com/in/srdrcll/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[9px] text-primary/75 hover:text-primary transition-colors font-semibold"
           >
-            @srdrcll
+            linkedin.com/in/srdrcll
           </a>
         </div>
 
