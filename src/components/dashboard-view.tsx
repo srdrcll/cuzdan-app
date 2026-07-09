@@ -387,7 +387,7 @@ export function DashboardView() {
 
       {payCard && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm animate-fade-in select-none">
-          <Card className="w-full max-w-sm p-5 border border-border shadow-2xl bg-background rounded-2xl animate-scale-in">
+          <Card className="w-full max-w-sm p-5 border border-border shadow-2xl bg-background rounded-2xl animate-scale-in max-h-[90vh] overflow-y-auto">
             <h3 className="text-sm font-bold text-foreground mb-4">💳 Kredi Kartı Borç Ödeme</h3>
             
             <div className="space-y-4">
