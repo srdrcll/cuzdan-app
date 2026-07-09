@@ -110,14 +110,12 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-end justify-center bg-black/60 backdrop-blur-sm transition-opacity duration-300 md:items-center px-0 md:px-4">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm transition-opacity duration-300 px-4">
       {/* Backdrop */}
       <div className="absolute inset-0" onClick={onClose} />
 
       {/* Modal Box */}
-      <div className="relative z-10 w-full max-w-md rounded-t-3xl bg-card p-6 shadow-2xl transition-all duration-300 animate-slide-up md:rounded-2xl border border-border max-h-[85vh] flex flex-col">
-        {/* Mobile handle */}
-        <div className="mx-auto mb-4 h-1.5 w-12 rounded-full bg-muted md:hidden" />
+      <div className="relative z-10 w-full max-w-md rounded-2xl bg-card p-5 shadow-2xl transition-all duration-300 animate-scale-in border border-border max-h-[85vh] flex flex-col">
 
         {/* Header */}
         <div className="mb-5 flex items-center justify-between border-b border-border/50 pb-4">

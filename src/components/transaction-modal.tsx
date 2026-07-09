@@ -151,15 +151,12 @@ export function TransactionModal({
   }
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-end justify-center bg-black/60 backdrop-blur-sm transition-opacity duration-300 md:items-center px-0 md:px-4">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm transition-opacity duration-300 px-4">
       {/* Backdrop click to close */}
       <div className="absolute inset-0" onClick={onClose} />
 
       {/* Modal Container */}
-      <div className="relative z-10 w-full max-w-md rounded-t-3xl bg-card p-6 shadow-2xl transition-all duration-300 animate-slide-up md:rounded-2xl border border-border max-h-[90vh] overflow-y-auto pb-10 md:pb-6">
-        {/* Drag handle for mobile */}
-        <div className="mx-auto mb-4 h-1.5 w-12 rounded-full bg-muted md:hidden" />
-
+      <div className="relative z-10 w-full max-w-md rounded-2xl bg-card p-5 shadow-2xl transition-all duration-300 animate-scale-in border border-border max-h-[85vh] overflow-y-auto">
         {/* Header */}
         <div className="mb-6 flex items-center justify-between">
           <h3 className="text-lg font-bold text-foreground">Yeni İşlem Ekle</h3>
