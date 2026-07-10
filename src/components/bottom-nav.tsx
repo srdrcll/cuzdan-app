@@ -135,7 +135,13 @@ export function BottomNav() {
                     <img src={userPic} alt="P" className="h-full w-full object-cover" />
                   ) : (
                     <svg viewBox="0 0 100 100" className="h-full w-full object-cover">
-                      <rect width="100" height="100" fill="url(#avatarGradNav)" />
+                      <defs>
+                        <linearGradient id="popoverAvatarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="#8b5cf6" />
+                          <stop offset="100%" stopColor="#6366f1" />
+                        </linearGradient>
+                      </defs>
+                      <rect width="100" height="100" fill="url(#popoverAvatarGrad)" />
                       <circle cx="50" cy="40" r="18" fill="white" opacity="0.9" />
                       <path d="M22,80 C22,65 32,58 50,58 C68,58 78,65 78,80" fill="white" opacity="0.9" />
                     </svg>
